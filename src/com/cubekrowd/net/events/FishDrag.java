@@ -23,7 +23,7 @@ public class FishDrag implements Listener {
 	@EventHandler
 	public void onFishDrag(PlayerFishEvent event) {
 		x = plugin.getConfig().getInt("isOn");
-		if((!(x == 0)) || (!(x == 1))){
+		if((!(x == 0)) && (!(x == 1))){
 			x = 1;
 			plugin.getConfig().set("isOn", x);
 			plugin.saveConfig();

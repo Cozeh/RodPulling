@@ -26,6 +26,7 @@ public class DragOnOff implements CommandExecutor {
 		
 		List<String> svadmins = plugin.getConfig().getStringList("Server Admins");
 		x = plugin.getConfig().getInt("isOn");
+		i = 0;
 		
 		if(sender instanceof ConsoleCommandSender){
 			i = 1;
@@ -38,6 +39,10 @@ public class DragOnOff implements CommandExecutor {
 			}
 		}
 		if(i == 1){ // I could have used swich here but I like this more
+			if(args.length == 0){
+				sender.sendMessage(ChatColor.RED + "The correct syntax is : /fdrag <value>");
+				return true;
+			}
 			if(args[0].equalsIgnoreCase("on")){
 				if(x == 1){
 					sender.sendMessage(ChatColor.AQUA + "The plugin was already ON");
@@ -61,7 +66,7 @@ public class DragOnOff implements CommandExecutor {
 				}
 			}
 			if(args[0].equalsIgnoreCase("add")){
-				if(!(args[1].length() == 0)){
+				if(!(args.length == 1)){
 					List<String> lst = plugin.getConfig().getStringList("Server Admins");
 					lst.add(args[1]);
 					plugin.getConfig().set("Server Admins", lst);
@@ -74,7 +79,7 @@ public class DragOnOff implements CommandExecutor {
 				
 			}
 			if(args[0].equalsIgnoreCase("remove")){
-				if(!(args[1].length() == 0)){
+				if(!(args.length == 1)){
 					List<String> lst = plugin.getConfig().getStringList("Server Admins");
 					lst.remove(args[1]);
 					plugin.getConfig().set("Server Admins", lst);
@@ -85,9 +90,6 @@ public class DragOnOff implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "The correct syntax is : /fdrag remove <name>");
 				}
 				
-			}
-			if(args[0].length() == 0){
-				sender.sendMessage(ChatColor.RED + "The correct syntax is : /fdrag <value>");
 			}
 		if(args[0].equalsIgnoreCase("mult")){
 			if(isItInt(args[1])){
@@ -103,7 +105,7 @@ public class DragOnOff implements CommandExecutor {
 		else{
 			sender.sendMessage(ChatColor.DARK_RED + "You are not allowed to do that command!");
 		}
-		
+		i = 0;
 		
 		return true;
 	}
