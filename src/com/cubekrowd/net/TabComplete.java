@@ -34,7 +34,7 @@ public class TabComplete implements TabCompleter{
 			}
 			return cmds;
 		}
-		if(args.length == 2){
+		if(args.length == 2 && args[0].equalsIgnoreCase("type")){
 			ArrayList<String> tabbing = new ArrayList<String>();
 				for(String tab : tabs){
 					if(args[1].equals("")) {tabbing.add(tab); continue;}

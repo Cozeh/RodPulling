@@ -88,7 +88,7 @@ public class CommandManager implements CommandExecutor {
 							mult = 5;
 							a = 0;
 						} else if (mult < 0) {
-							sender.sendMessage(ChatColor.RED + "The maximum value of the velocity you can set is 0!");
+							sender.sendMessage(ChatColor.RED + "The minimum value of the velocity you can set is 0!");
 							sender.sendMessage(ChatColor.GREEN + "Setting the velocity to " + ChatColor.GOLD + "0.");
 							mult = 0;
 							a = 0;
