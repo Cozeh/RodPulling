@@ -1,9 +1,5 @@
 #Plugin for dev
 
 isOn: 1
-
+type: 1
 mult: 1
-
-Server Admins:
-    - D3m0n0id
-    - Foorack

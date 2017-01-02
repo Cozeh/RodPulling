@@ -18,36 +18,39 @@ public class FishDrag implements Listener {
 		plugin = pl;
 	}
 
-	int x = 0;
+	int isOn, mult, type;
 	
 	@EventHandler
 	public void onFishDrag(PlayerFishEvent event) {
-		x = plugin.getConfig().getInt("isOn");
-		if((!(x == 0)) && (!(x == 1))){
-			x = 1;
-			plugin.getConfig().set("isOn", x);
+		isOn = plugin.getConfig().getInt("isOn");
+		if((!(isOn == 0)) && (!(isOn == 1))){
+			isOn = 1;
+			plugin.getConfig().set("isOn", isOn);
 			plugin.saveConfig();
 		}
 		
-		String mult = plugin.getConfig().getString("mult");
-		int res = Integer.parseInt(mult);
+		mult = plugin.getConfig().getInt("mult");
+		type = plugin.getConfig().getInt("type");
 		
-		if(res > 5 || res < 1){
-			res = 2;
-		}
 		
-		plugin.getConfig().set("mult", res);
-		
-		if(x == 1){
+		if(isOn == 1){
 				
 		Player player = event.getPlayer();
 		if (event.getState() == PlayerFishEvent.State.CAUGHT_ENTITY) {
 			Entity entity = event.getCaught();
 			if (entity instanceof LivingEntity) {
-				Vector dir = entity.getLocation().toVector().subtract(player.getLocation().toVector()).normalize();
-				dir.multiply(res);
-				dir.add(new Vector(0,1,0));
-				player.setVelocity(dir);
+				if(type == 1){
+					Vector dir = entity.getLocation().toVector().subtract(player.getLocation().toVector()).normalize();
+					dir.multiply(mult);
+					dir.add(new Vector(0,1,0));
+					player.setVelocity(dir);
+				}
+				else if(type == 0){
+					Vector dir = player.getLocation().toVector().subtract(entity.getLocation().toVector()).normalize();
+					dir.multiply(mult);
+					dir.add(new Vector(0,1,0));
+					entity.setVelocity(dir);
+				}
 			}
 		}
 	}
