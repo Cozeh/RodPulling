@@ -1,0 +1,14 @@
+name: RodPulling
+description: RodPulling plugin for Dev
+author: D3m0n0id
+version: 1.4
+main: com.cubekrowd.net.Main
+
+commands:
+  fdrag:
+    description: Main FishDrag command.
+    usage: /fdrag <value>
+permissions:
+  fdrag.fdrag:
+    description: Gives you access to all fdrag commands.
+    default: op 
